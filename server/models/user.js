@@ -16,4 +16,4 @@ const ModelClass = mongoose.model("user", userSchema);
 // This loads the schema to mongoose and the schema corresponds to the "user" entry in DB.
 
 // Export the model
-modules.exports = ModelClass;
+module.exports = ModelClass;
