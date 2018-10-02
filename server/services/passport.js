@@ -13,7 +13,10 @@ const config = require("../config");
 
 
 // Set up options for JWT strategy
-const jwtOptions = {};
+const jwtOptions = {
+  jwtFromRequest: ExtractJwt.fromHeader("authorization"), // Whenever a request comes in, look for the authorization header
+  secretOrKey: config.secret
+};
 
 // Create JWT strategy
 const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {
@@ -37,7 +40,5 @@ const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {
   });
 });
 
-
-// 
-
 // Tell passport to use this strategy
+passport.use(jwtLogin);
