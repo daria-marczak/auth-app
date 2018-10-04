@@ -9,13 +9,26 @@ const config = require("../config");
 
 // Passport is more of a echosystem of strategies (methods of authenticating users). Two of them are:
 // 1) Verify user with a JWT
-// 2) Verify user with a username and password
+// 2) Verify user with a email and password
 
 // Create local strategy
 const localOptions = { usernameField: "email" };
 const localLogin = new LocalStrategy(localOptions, function(email, password, done) {
+  // Verify this email and password, call done with the user if it is the correct email and password
+  User.findOne({ email: email }, function(err, user) {
+    if (err) {
+      return done(err);
+    }
+    if (!user) {
+      return done(null, false); // User not found
+    }
 
+    // Compare passwords
+    
+  });
 });
+
+// 
 
 // Set up options for JWT strategy
 const jwtOptions = {
