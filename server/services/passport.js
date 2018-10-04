@@ -24,11 +24,19 @@ const localLogin = new LocalStrategy(localOptions, function(email, password, don
     }
 
     // Compare passwords - the password is salted and hashed. So we verify the submitted password with salt to see if they are the same
-    
+    user.comparePassword(password, function(err, isMatch) {
+      if (err) {
+        return done(err)
+      }
+
+      if (!isMatch) {
+        return done(null, false);
+      }
+
+      return done(null, user);
+    });
   });
 });
-
-// 
 
 // Set up options for JWT strategy
 const jwtOptions = {
@@ -60,3 +68,4 @@ const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {
 
 // Tell passport to use this strategy
 passport.use(jwtLogin);
+passport.use(localLogin);
