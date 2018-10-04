@@ -17,6 +17,8 @@ function tokenForUser(user) {
 exports.signin = function(req, res, next) {
   // User has already had their email and assword auth'd
   // We just need to give them a token
+  // The done callback in password is supplied by passport. Then when we want the userSchema for the authentication, we can use req.user
+  res.send({ token: tokenForUser(req.user) })
 }
 
 exports.signup = function(req, res, next) {
