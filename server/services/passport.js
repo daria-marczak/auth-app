@@ -23,7 +23,7 @@ const localLogin = new LocalStrategy(localOptions, function(email, password, don
       return done(null, false); // User not found
     }
 
-    // Compare passwords
+    // Compare passwords - the password is salted and hashed. So we verify the submitted password with salt to see if they are the same
     
   });
 });
