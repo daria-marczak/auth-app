@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
+import { connect } from "react-redux";
+import { compose } from "redux";
+
+import * as actions from "../../actions";
 
 class SignUp extends Component {
   onSubmit = (formProps) => {
-    console.log(formProps);
-  }
+    this.props.signup(formProps);
+  };
 
   render() {
     const { handleSubmit } = this.props;
@@ -37,4 +41,9 @@ class SignUp extends Component {
   }
 }
 
-export default reduxForm({ form: "signup" })(SignUp);
+export default compose(
+  connect(null, actions),
+  reduxForm({ form: "signup" })
+)(SignUp);
+
+// compose allows to apply multiple higher order components. We can add as many HOC as we wish
