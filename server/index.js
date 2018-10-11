@@ -19,6 +19,7 @@ app.use(morgan("combined"));
 // Morgan and bodyParser are middleware in Express. Any incoming request is going to be passed into morgan and bodyParser by default. "app.use" specifies the middleware to be used. Morgan is a logging framework. Its logging that there was a GET request and so on. Mostly for debugging.
 
 app.use(cors());
+// We have to configure the server to actually be able to do cross-origin
 
 app.use(bodyParser.json({ type: "*/*" }));
 // It parses incoming request into JSON. It will attempt to do so no matter what its type is.
