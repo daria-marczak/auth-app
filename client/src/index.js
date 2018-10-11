@@ -11,7 +11,11 @@ import SignUp from "./components/auth/SignUp";
 import Feature from "./components/Feature";
 import reducers from "./reducers";
 
-const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
+const store = createStore(reducers, {
+  auth: { authenticated: localStorage.getItem("token") }
+}, applyMiddleware(reduxThunk));
+// With this, every time the app starts, we start the app with redux state of auth.authenticated and verify if there is a token in the localStorage
+
 
 ReactDOM.render(
   <Provider store={store}>
